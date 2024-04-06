@@ -48,7 +48,6 @@ public class User {
     public void incrementStreak() {
         streak++;
     }
-
     public void resetStreak() {
         streak = 0;
     }
