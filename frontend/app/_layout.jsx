@@ -5,7 +5,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
-import { useColorScheme } from '@/components/useColorScheme';
+// import { useColorScheme } from '@/components/useColorScheme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -22,9 +22,9 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-   'mon': require('../assets/fonts/Monterrat-Regular.ttf'),
-   'mon-sb': require('../assets/fonts/Monterrat-SemiBold.ttf'),
-   'mon-b': require('../assets/fonts/Monterrat-Bold.ttf')
+   'mon': require('../assets/fonts/Montserrat-Regular.ttf'),
+   'mon-sb': require('../assets/fonts/Montserrat-SemiBold.ttf'),
+   'mon-b': require('../assets/fonts/Montserrat-Bold.ttf')
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
