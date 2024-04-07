@@ -24,6 +24,7 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
    'mon': require('../assets/fonts/Montserrat-Regular.ttf'),
    'mon-sb': require('../assets/fonts/Montserrat-SemiBold.ttf'),
+   'cute-font': require('../assets/fonts/ScholarlyAmbitionRegular.ttf'), 
    'mon-b': require('../assets/fonts/Montserrat-Bold.ttf')
   });
 
