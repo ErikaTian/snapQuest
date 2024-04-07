@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, Animated, Easing } from 'react-native';
 import moment from 'moment-timezone';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Fontisto } from '@expo/vector-icons';
 
 // Define an interface for the props
 interface MyProgressBarProps {
@@ -86,7 +87,7 @@ const Homescreen = () => {
     <ScrollView style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
-        <Text style={styles.headerText}>Hello {username}!</Text>
+        <Text style={styles.headerText}><Fontisto name="day-cloudy" size={24} color="black" /> Hello, {username}! <Fontisto name="day-cloudy" size={24} color="black" /> </Text>
       </View>
 
       {/* Quest Card Section */}
@@ -162,13 +163,18 @@ const styles = StyleSheet.create({
   },
 
   questTitle: {
-    fontSize: 20,
+    fontSize: 23,
     color: '#333333', // dark gray colour
     marginBottom: 8,
+    fontWeight: 'bold',
+    
+    
   },
 
   questName: {
     fontSize: 20,
+    marginTop: 10, 
+    marginBottom: 10, 
     // fontWeight: 'bold',
     fontFamily: "margarsa", 
     color: '#1A535C', // Darker shade of green for the quest name
@@ -249,7 +255,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 
-  // Styles for additional components will go here
+
 });
 
 export default Homescreen;

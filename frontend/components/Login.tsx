@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
 
 const LoginScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('');
@@ -16,6 +16,8 @@ const LoginScreen = ({navigation}: any) => {
   };
 return (
     <View style =  {styles.container}>
+
+<Image source={require("@/assets/images/logo.jpg")} style={styles.logoStyle} />
 
     <Text style={styles.title}>Welcome Back!</Text>
     <Text style={styles.subtitle}>Please log in to check your profile</Text>
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
    // alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    marginTop: "50%", 
+    marginTop: "25%", 
     backgroundColor: "fff", 
     alignItems: 'center',
 
@@ -123,7 +125,13 @@ const styles = StyleSheet.create({
   },
   color:{
     backgroundColor: "#fff", 
-  }
+  },
+  logoStyle: {
+    width: 150, // Adjust the width as needed
+    height: 150, // Adjust the height as needed
+    marginBottom: 20, // Optional: add margin if needed
+    resizeMode: 'contain', // Ensure the image fits the container without stretching
+  },
 });
 
 export default LoginScreen;

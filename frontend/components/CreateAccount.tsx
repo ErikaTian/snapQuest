@@ -57,9 +57,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     marginBottom: 20,
-    fontFamily: 'mon-b'
+    fontFamily: "margarsa",
   },
   input: {
     width: '100%',

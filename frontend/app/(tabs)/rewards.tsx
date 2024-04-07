@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 interface DiscountCode {
   id: string;
@@ -11,7 +12,7 @@ interface DiscountCode {
 
 // Sample data including a 'redeemed' field and 'rewardValue' field
 const discountCodes: DiscountCode[] = [
-  { id: '1', code: '10OFF', description: '10% Off on Arcteryx Beta Jacket', redeemed: false, rewardValue: 50 },
+  { id: '1', code: '10OFF', description: '10% Off on Arcteryx Beta Jacket', redeemed: false, rewardValue: 150 },
   { id: '2', code: '5CASHBACK', description: '5% Cashback on Next Purchase at Arcteryx', redeemed: false, rewardValue: 40 },
   { id: '3', code: 'BRINGAFRIEND', description: 'Bring a guest to our Bollywood Dance Class for free', redeemed: true, rewardValue: 50 },
   { id: '4', code: 'FREESPIN', description: 'One Free Spin Class', redeemed: true, rewardValue: 15 },
@@ -71,7 +72,7 @@ const RewardScreen = () => {
     >
       <Text style={styles.discountCode}>{item.code}</Text>
       <Text style={styles.discountDescription}>{item.description}</Text>
-      <Text style={styles.rewardValue}>Reward Value: {item.rewardValue}</Text>
+      <Text style={styles.rewardValue}>Reward Value: {item.rewardValue} </Text>
       {item.redeemed ? (
         <Text style={styles.redeemedLabel}>Redeemed</Text>
       ) : (
@@ -83,8 +84,8 @@ const RewardScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.pointsContainer}>
-        <Text style={styles.pointsLabel}>Current Points</Text>
-        <Text style={styles.pointsValue}>{currentPoints}</Text>
+        <Text style={styles.pointsLabel}><FontAwesome5 name="crown" size={20} color="black" /> Current Points <FontAwesome5 name="crown" size={20} color="black" /> </Text>
+        <Text style={styles.pointsValue}>{currentPoints} </Text>
       </View>
       <Text style={styles.rewardHeading}>Rewards</Text>
       <FlatList
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
   },
   pointsLabel: {
-    fontSize: 30,
+    fontSize: 22,
     color: '#FFFFFF',
     fontWeight: '600',
     marginBottom: 8,
