@@ -27,15 +27,6 @@ const UploadScreen = () => {
     }
   };
 
-  const showAlert = (message: string) => {
-    Alert.alert(
-      'Notification',
-      message,
-      [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-      { cancelable: false }
-    );
-  };
-
 
   const analyzeImage = async (uri : string) => {
     try {
