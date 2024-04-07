@@ -86,7 +86,7 @@ const ProfileScreen = () => {
           </Text>
         </View>
         <Text style={styles.header}>
-          Pictures you have taken
+          Pictures you have taken:
         </Text>
         <View style={styles.imagesContainer}>
           {images.map((image, index) => (
