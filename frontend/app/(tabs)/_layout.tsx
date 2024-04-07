@@ -4,19 +4,24 @@ import Colors from '@/constants/Colors';
 import { MaterialCommunityIcons, AntDesign, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import {useState, useEffect} from 'react'; 
 import { EventRegister } from 'react-native-event-listeners';
+import theme from '@/assets/theme/theme'
+import themeContext from '@/assets/theme/themeContext'
+
 const Layout = () => {
   const[darkMode, setDarkMode] = useState(false)
 
   useEffect (() => {
     const listener = EventRegister.addEventListener('ChangeTheme', (data)=>{
       setDarkMode(data)
+      // console.log(data)
     })
     return () => {
-      EventRegister.removeAllListeners(listener)
+      EventRegister.removeAllListeners()
     }
   }, [darkMode])
   
   return (
+    <themeContext.Provider value={darkMode === true ? theme.dark: theme.light}>
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
@@ -66,6 +71,7 @@ const Layout = () => {
         }}
       />
     </Tabs>
+    </themeContext.Provider>
   );
 };
 

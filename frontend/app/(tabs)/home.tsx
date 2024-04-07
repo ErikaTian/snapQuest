@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, Animated, Easing, Switch } from 'react-native';
 import moment from 'moment-timezone';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Fontisto } from '@expo/vector-icons';
 import { EventRegister } from 'react-native-event-listeners';
-
+import themeContext from '@/assets/theme/themeContext';
 
 // Define an interface for the props
 interface MyProgressBarProps {
@@ -22,6 +22,7 @@ const MyProgressBar: React.FC<MyProgressBarProps> = ({ progress }) => {
 };
 
 const Homescreen = () => {
+
   // Replace 'USERNAME' with your state variable or prop
   const username = 'Taylor';
   const completeQuest = false; 
@@ -85,15 +86,15 @@ const Homescreen = () => {
     outputRange: ['0deg', '360deg']
   });
 
-
+const theme = useContext(themeContext)
 const [darkMode, setDarkMode] = useState(false)
   return (
 
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, {backgroundColor: theme.backgroundHome }]}>
       {/* Header Section */}
 
       <View style = {styles.toggle}>
-      <Text style = {styles.text}>Dark Mode</Text>
+      <Text style = {styles.text}>Color Blindness Friendly Mode</Text>
       <Switch
           value = {darkMode}   
           onValueChange ={(value) => {
@@ -106,32 +107,32 @@ const [darkMode, setDarkMode] = useState(false)
 
 
 
-      <View style={styles.header}>
-        <Text style={styles.headerText}><Fontisto name="day-cloudy" size={24} color="black" /> Hello, {username}! <Fontisto name="day-cloudy" size={24} color="black" /> </Text>
+      <View style={[styles.header, {backgroundColor: theme.background}]}>
+        <Text style={[styles.headerText, {color: theme.color}]}><Fontisto name="day-cloudy" size={24} color = {theme.color} /> Hello, {username}! <Fontisto name="day-cloudy" size={24} color = {theme.color} /> </Text>
       </View>
 
       {/* Quest Card Section */}
-      <View style={styles.questCard}>
-        <Image source={questImage} style={styles.questImage} />
-        <Text style={styles.questTitle}>TODAY'S QUEST:</Text>
-        <Text style={styles.questName}>"Step outside and snap a photo of the stunning cherry blossoms in bloom!"</Text>
-        <Text style={styles.questStatus}>{completeText()}!</Text>
-        <Text style={styles.dueDateTime}>Upload your photo by {dueDateTime.format('MMMM Do, YYYY [at] h:mm A z')} to maintain your streak</Text>
+      <View style={[styles.questCard, {backgroundColor: theme.background}]}>
+        <Image source={questImage} style={styles.questImage}/>
+        <Text style={[styles.questTitle , {color: theme.color}]}>TODAY'S QUEST:</Text>
+        <Text style={[styles.questName, {color: theme.snapColor}]}>"Step outside and snap a photo of the stunning cherry blossoms in bloom!"</Text>
+        <Text style={[styles.questStatus, {color: theme.completeColor}]}>{completeText()}!</Text>
+        <Text style={[styles.dueDateTime, {color: theme.timeColor}]}>Upload your photo by {dueDateTime.format('MMMM Do, YYYY [at] h:mm A z')} to maintain your streak</Text>
         <View style={styles.timeRemainingContainer}>
           <Animated.View style={[styles.hourglassIcon, { transform: [{ rotate: spinAnimation }] }]}>
             <Icon name="hourglass" size={20} color="#666666" />
           </Animated.View>
-          <Text style={styles.timeRemaining}>Time Remaining:  {timeRemaining.hours} hours {timeRemaining.minutes} minutes</Text>
+          <Text style={[styles.timeRemaining, {color: theme.timeColor}]}>Time Remaining:  {timeRemaining.hours} hours {timeRemaining.minutes} minutes</Text>
         </View>
       </View>
 
       {/* Streak Section */}
-      <View style={styles.streakSection}>
-        <Text style={styles.streakTitle1}>WELLNESS CHALLENGE</Text>
-        <Text style={styles.streakTitle2}>You can do this!</Text>
+      <View style={[styles.streakSection, {backgroundColor: theme.background}]}>
+        <Text style={[styles.streakTitle1, {color: theme.streakColor}]}>WELLNESS CHALLENGE</Text>
+        <Text style={[styles.streakTitle2, {color: theme.streakColor}]}>You can do this!</Text>
         <View style={styles.streakInfo}>
-          <Text style={styles.streakText}>Current Streak: {currentStreak} days</Text>
-          <Text style={styles.streakText}>Longest Streak: {longestStreak} days</Text>
+          <Text style={[styles.streakText, {color: theme.timeColor}]}>Current Streak: {currentStreak} days</Text>
+          <Text style={[styles.streakText, {color: theme.timeColor}]}>Longest Streak: {longestStreak} days</Text>
           <MyProgressBar progress={progress} />
         </View>
       </View>
@@ -147,15 +148,15 @@ const [darkMode, setDarkMode] = useState(false)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFC0CB', //pink color
+    // backgroundColor: '#FFC0CB', //pink color
   },
   header: {
     marginTop: 20,
     padding: 16,
-    backgroundColor: '#FFFFFF', // white colour
+    // backgroundColor: '#FFFFFF', // white colour
     alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#D1D1D1', // Light gray border color
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#D1D1D1', // Light gray border color
   },
   headerText: {
     fontSize: 50,
@@ -200,19 +201,19 @@ const styles = StyleSheet.create({
     marginBottom: 10, 
     // fontWeight: 'bold',
     fontFamily: "margarsa", 
-    color: '#1A535C', // Darker shade of green for the quest name
+    // color: '#1A535C', // Darker shade of green for the quest name
   },
   questStatus: {
     marginTop: 8,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#FF6B6B', // Adjust as needed, this is usually a highlight color
+    // color: '#FF6B6B', // Adjust as needed, this is usually a highlight color
   },
   dueDateTime: {
     marginTop: 8,
     fontSize: 16,
     fontStyle: 'italic',
-    color: '#666666',
+    // color: '#666666',
   },
   timeRemainingContainer: {
     flexDirection: 'row',
@@ -223,7 +224,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontSize: 16,
     fontStyle: 'italic',
-    color: '#666666',
+    // color: '#666666',
   },
   hourglassIcon: {
     marginRight: 5,
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 20,
     marginHorizontal: 16,
-    backgroundColor: '#FFFFFF',
+    // backgroundColor: '#FFFFFF',
     borderRadius: 10,
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 2 },
@@ -261,7 +262,7 @@ const styles = StyleSheet.create({
   },
   streakText: {
     fontSize: 16,
-    color: '#333333',
+    // color: '#333333',
     marginBottom: 4,
   },
 
@@ -291,10 +292,10 @@ const styles = StyleSheet.create({
    
   },
   text: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
     marginRight: 0, // Add margin to separate Text and Switch
-    marginLeft: "65%", 
+    marginLeft: "30%", 
   },
 
 

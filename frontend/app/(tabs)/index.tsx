@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '@/components/Login';
 import CreateAccountScreen from '@/components/CreateAccount';
 import ProfileScreen from '@/components/Profile';
-
 const Stack = createStackNavigator();
 
 const Page = () => {
