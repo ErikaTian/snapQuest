@@ -135,7 +135,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'cursive-font',
+    // fontWeight: 'bold',
     color: '#333333', // dark gray color for text
   },
   questCard: {
