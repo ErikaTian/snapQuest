@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, StyleSheet, Image} from 'react-native'
 import React from 'react'
 import {images} from "@/assets/data/images"
+import { userCollection, addDoc } from '../firebaseConfig';
 
 
 const Images = () => {
