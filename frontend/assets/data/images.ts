@@ -16,6 +16,18 @@ export const images = [
     },
     {
         img: require("../images/photo5.jpg"),
+    },
+    {
+        img: require("../images/photo6.jpg"),
+    },
+    {
+        img: require("../images/photo7.jpg"),
+    },
+    {
+        img: require("../images/photo8.jpg"),
+    },
+    {
+        img: require("../images/photo9.jpg"),
     }
 ]
 

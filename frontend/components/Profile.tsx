@@ -75,6 +75,8 @@ const ProfileScreen = () => {
     outputRange: ['0deg', '360deg']
   });
 
+  const rewards = 105; 
+
   return (
     <SafeAreaView>
       <ScrollView style={styles.container}>
@@ -84,7 +86,13 @@ const ProfileScreen = () => {
           <Text style={styles.streakText}>
             Current Streak: {currentStreak} days | Longest Streak: {longestStreak} days
           </Text>
+          <Text style={styles.streakText}>
+            Current Rewards: {rewards} Points
+          </Text>
         </View>
+
+
+
         <Text style={styles.header}>
           Pictures you have taken:
         </Text>
@@ -106,8 +114,8 @@ const styles = StyleSheet.create({
   },
   profileContainer: {
     alignItems: 'center',
-    marginTop: "10%", 
-    marginBottom: "25%",
+    marginTop: "5%", 
+    marginBottom: "15%",
   },
   profileImage: {
     width: 120,

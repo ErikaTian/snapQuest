@@ -86,7 +86,7 @@ const Homescreen = () => {
     <ScrollView style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
-        <Text style={styles.headerText}>Hello {username}!</Text>
+        <Text style={styles.headerText}>Hello, {username}!</Text>
       </View>
 
       {/* Quest Card Section */}
@@ -165,10 +165,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#333333', // dark gray colour
     marginBottom: 8,
+    
   },
 
   questName: {
     fontSize: 20,
+    marginTop: 10, 
+    marginBottom: 10, 
     // fontWeight: 'bold',
     fontFamily: "margarsa", 
     color: '#1A535C', // Darker shade of green for the quest name
