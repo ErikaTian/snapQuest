@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native';
 
 interface DiscountCode {
   id: string;
@@ -35,7 +35,9 @@ const renderDiscountCodeItem = ({ item }: { item: DiscountCode }) => (
 );
 
   return (
+   
     <View style={styles.container}>
+       <ScrollView>
       <View style={styles.pointsContainer}>
         <Text style={styles.pointsLabel}>Current Points</Text>
         <Text style={styles.pointsValue}>{currentPoints}</Text>
@@ -59,6 +61,7 @@ const renderDiscountCodeItem = ({ item }: { item: DiscountCode }) => (
           />
         </View>
       )}
+      </ScrollView>
     </View>
   );
 };
