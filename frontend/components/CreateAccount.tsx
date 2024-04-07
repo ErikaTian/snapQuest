@@ -1,43 +1,41 @@
 import React, { useState } from 'react';
+import firebase from 'firebase/app';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-// import { useNavigation } from '@react-navigation/native';
+import { userCollection, addDoc } from '../firebaseConfig';
 
-const CreateAccountScreen = ({navigation}: any) => {
+// Initialize docId outside of the component
+let docId = '';
+
+const CreateAccountScreen = ({ navigation }: any) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const navigation = useNavigation();
-  const handleCreateAccount = () => {
-    // Add logic here to create the account (e.g., API call)
-    // Assuming successful account creation, navigate to ProfileScreen
-    navigation.navigate('Profile');
+  const handleCreateAccount = async () => {
+    const userData = {
+      name: name,
+      email: email,
+      password: password
+    };
+
+    try {
+      const docRef = await addDoc(userCollection, userData);
+
+      console.log('New user added with ID:', docRef.id);
+      docId = docRef.id; // Update the value of docId
+      return docRef.id;
+    } catch (error) {
+      console.error('Error adding user to Firestore:', error);
+      throw error;
+    }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Create an Account</Text>
-
-      <TextInput
-        style={styles.input}
-        placeholder="User Name"
-        value={name}
-        onChangeText={setName}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry={true}
-        value={password}
-        onChangeText={setPassword}
-      />
-
+      <TextInput style={styles.input} placeholder="User Name" value={name} onChangeText={setName} />
+      <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
+      <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} value={password} onChangeText={setPassword} />
       <TouchableOpacity style={styles.button} onPress={handleCreateAccount}>
         <Text style={styles.buttonText}>Create Account</Text>
       </TouchableOpacity>
@@ -48,12 +46,10 @@ const CreateAccountScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
   container: {
     marginTop: "50%",
-    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#fff',
-  
   },
   title: {
     fontSize: 28,
@@ -85,4 +81,6 @@ const styles = StyleSheet.create({
   },
 });
 
+// Export the CreateAccountScreen component
 export default CreateAccountScreen;
+export {docId};
