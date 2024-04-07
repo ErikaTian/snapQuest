@@ -20,7 +20,8 @@ const MyProgressBar: React.FC<MyProgressBarProps> = ({ progress }) => {
 
 const Homescreen = () => {
   // Replace 'USERNAME' with your state variable or prop
-  const username = 'Chehak';
+  const username = 'Taylor';
+  const completeQuest = false; 
   const questImage = require('../../assets/cherryblossom.png');
   // Current and longest streak as placeholders, replace with state/logic
   const currentStreak = 17;
@@ -38,6 +39,11 @@ const Homescreen = () => {
     const minutes = Math.floor(duration.asMinutes() % 60);
     return { hours, minutes };
   };
+
+  const completeText = () => {
+    return completeQuest ? 'Completed' : 'Not Completed';
+  };
+
 
   // State to hold the time remaining
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
@@ -87,8 +93,8 @@ const Homescreen = () => {
       <View style={styles.questCard}>
         <Image source={questImage} style={styles.questImage} />
         <Text style={styles.questTitle}>TODAY'S QUEST:</Text>
-        <Text style={styles.questName}>Let's venture out of the house and take a stroll in nature, exploring the Cherry Blossom Festival at David Lam's Park</Text>
-        <Text style={styles.questStatus}>Not completed yet!</Text>
+        <Text style={styles.questName}>"Step outside and snap a photo of the stunning cherry blossoms in bloom!"</Text>
+        <Text style={styles.questStatus}>{completeText()}!</Text>
         <Text style={styles.dueDateTime}>Upload your photo by {dueDateTime.format('MMMM Do, YYYY [at] h:mm A z')} to maintain your streak</Text>
         <View style={styles.timeRemainingContainer}>
           <Animated.View style={[styles.hourglassIcon, { transform: [{ rotate: spinAnimation }] }]}>
@@ -128,8 +134,10 @@ const styles = StyleSheet.create({
     borderBottomColor: '#D1D1D1', // Light gray border color
   },
   headerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 50,
+    fontFamily: 'cursive-font',
+    // fontWeight: 'bold',
+    // marginTop: 15,
     color: '#333333', // dark gray color for text
   },
   questCard: {
@@ -154,14 +162,15 @@ const styles = StyleSheet.create({
   },
 
   questTitle: {
-    fontSize: 16,
+    fontSize: 20,
     color: '#333333', // dark gray colour
     marginBottom: 8,
   },
 
   questName: {
     fontSize: 20,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
+    fontFamily: "margarsa", 
     color: '#1A535C', // Darker shade of green for the quest name
   },
   questStatus: {

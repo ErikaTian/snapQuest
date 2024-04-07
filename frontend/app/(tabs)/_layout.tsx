@@ -14,7 +14,7 @@ const Layout = () => {
       }}
     >
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
           tabBarLabel: 'Home',
           title: "Home",

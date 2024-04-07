@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import axios from 'axios';
+import * as FileSystem from 'expo-file-system';
 
 const UploadScreen = () => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
+
+  const [labels, setLabels] = useState([]);
+
+
 
   const pickImage = async () => {
     let result = await ImagePicker.launchCameraAsync({
@@ -13,9 +19,93 @@ const UploadScreen = () => {
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      setImage(result.uri);
+    if (!result.canceled) {
+
+      analyzeImage(result.assets[0].uri);
+      setImage(result.assets[0].uri);
+      
     }
+  };
+
+
+  const analyzeImage = async (uri : string) => {
+    try {
+      if (!uri) {
+        alert('Please select an image first.');
+        return;
+      }
+
+      // Replace 'YOUR_GOOGLE_CLOUD_VISION_API_KEY' with your actual API key
+      const apiKey = 'AIzaSyD9sC7zKyM3WNim0LwIJE4RQWkYKfHCkpo';
+      const apiUrl = `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`;
+
+      // Read the image file from local URI and convert it to base64
+      const base64ImageData = await FileSystem.readAsStringAsync(uri, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+
+      const requestData = {
+        requests: [
+          {
+            image: {
+              content: base64ImageData,
+            },
+            features: [{ type: 'LABEL_DETECTION', maxResults: 10 }],
+          },
+        ],
+      };
+
+      const apiResponse = await axios.post(apiUrl, requestData);
+
+      setLabels(apiResponse.data.responses[0].labelAnnotations);
+      const variableString = ['green', 'grass', 'aqua']; 
+      const hasMatch = parseResponse(apiResponse.data.responses[0], variableString);
+      if (hasMatch) {
+        showAlert("Success!");
+      } else {
+        showAlert("Hmm, that doesnt seem correct. Try again");
+      }
+    } catch (error) {
+      console.error('Error analyzing image:', error);
+      alert('Error analyzing image. Please try again later.');
+    }
+  };
+
+  const parseResponse = (response: any, variableString: string[]) => {
+    const matchedDescriptions: string[] = [];
+  
+    if (!response || !response.labelAnnotations || !variableString) {
+      return false;
+    }
+  
+    let foundMatch = false; // Flag to track if a match is found
+  
+    for (const annotation of response.labelAnnotations) {
+      console.log(annotation.description); 
+      matchedDescriptions.push(annotation.description);
+      if (variableString.includes(annotation.description.toLowerCase())) {
+        foundMatch = true;
+
+      }
+    }
+  
+    if (foundMatch) {
+      return true;
+    } else {
+      return false;
+
+    }
+  };
+  
+  
+
+  const showAlert = (message: string) => {
+    Alert.alert(
+      'Notification',
+      message,
+      [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+      { cancelable: false }
+    );
   };
 
   return (

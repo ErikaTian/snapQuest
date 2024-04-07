@@ -19,6 +19,7 @@
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
+    "axios": "^1.6.8",
     "expo": "~50.0.14",
     "expo-font": "~11.10.3",
     "expo-image-picker": "~14.7.1",
@@ -38,7 +39,12 @@
     "react-native-screens": "~3.29.0",
     "react-native-tab-view": "^3.5.2",
     "react-native-vector-icons": "^10.0.3",
+<<<<<<< HEAD
     "react-native-web": "~0.19.6"
+=======
+    "react-native-web": "~0.19.6",
+    "expo-file-system": "~16.0.8"
+>>>>>>> c1807893712d80815a2fb356793180b2d3612c62
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
