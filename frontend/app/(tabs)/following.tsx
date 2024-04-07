@@ -3,9 +3,11 @@ import React from 'react'
 
 const following = () => {
   return (
-    <View>
-      <Text>following</Text>
-    </View>
+    // <SafeAreaView style ={styles.safeArea}>
+    // <View>
+ 
+    // </View>
+    // </SafeAreaView>
   )
 }
 
