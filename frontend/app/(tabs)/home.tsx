@@ -20,7 +20,7 @@ const MyProgressBar: React.FC<MyProgressBarProps> = ({ progress }) => {
 
 const Homescreen = () => {
   // Replace 'USERNAME' with your state variable or prop
-  const username = 'Chehak';
+  const username = 'Taylor';
   const questImage = require('../../assets/cherryblossom.png');
   // Current and longest streak as placeholders, replace with state/logic
   const currentStreak = 17;
