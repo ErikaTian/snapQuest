@@ -42,7 +42,7 @@ const UploadScreen = () => {
       }
 
       // Replace 'YOUR_GOOGLE_CLOUD_VISION_API_KEY' with your actual API key
-      const apiKey = 'AIzaSyArdWiO-dwBt7ouuOGUJCJ9CmkN8R8z_FE';
+      const apiKey = 'AIzaSyD9sC7zKyM3WNim0LwIJE4RQWkYKfHCkpo';
       const apiUrl = `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`;
 
       // Read the image file from local URI and convert it to base64
