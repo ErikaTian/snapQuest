@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 const UploadScreen = () => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
 
   const pickImage = async () => {
     let result = await ImagePicker.launchCameraAsync({
@@ -13,9 +13,21 @@ const UploadScreen = () => {
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      setImage(result.uri);
+    if (!result.canceled) {
+      console.log("entered if")
+      setImage(result.assets[0].uri);
+      showAlert("Image Uploaded!")
+
     }
+  };
+
+  const showAlert = (message: string) => {
+    Alert.alert(
+      'Notification',
+      message,
+      [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+      { cancelable: false }
+    );
   };
 
   return (
