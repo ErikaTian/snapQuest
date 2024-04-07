@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Image, ScrollView, Animated, Easing } from 'react-native';
 import moment from 'moment-timezone';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Fontisto } from '@expo/vector-icons';
 
 // Define an interface for the props
 interface MyProgressBarProps {
@@ -86,7 +87,7 @@ const Homescreen = () => {
     <ScrollView style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
-        <Text style={styles.headerText}>Hello, {username}!</Text>
+        <Text style={styles.headerText}><Fontisto name="day-cloudy" size={24} color="black" /> Hello, {username}! <Fontisto name="day-cloudy" size={24} color="black" /> </Text>
       </View>
 
       {/* Quest Card Section */}
