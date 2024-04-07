@@ -88,13 +88,16 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#fff',
+   
+
   },
   container: {
     height: 60,
     backgroundColor: '#fff',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    marginTop: 20, 
   },
   titleContainer: {
     marginLeft: 20,

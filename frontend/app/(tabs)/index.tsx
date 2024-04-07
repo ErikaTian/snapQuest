@@ -162,9 +162,11 @@ const styles = StyleSheet.create({
   },
 
   questTitle: {
-    fontSize: 20,
+    fontSize: 23,
     color: '#333333', // dark gray colour
     marginBottom: 8,
+    fontWeight: 'bold',
+    
     
   },
 
@@ -252,7 +254,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 
-  // Styles for additional components will go here
+
 });
 
 export default Homescreen;

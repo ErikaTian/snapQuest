@@ -138,13 +138,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: "rgba(245, 255, 255, 0.7)",
-    marginRight: 20, 
-    marginLeft: 20, 
+    marginRight: 25, 
+    marginLeft: 25, 
 
   },
   title: {
     fontSize: 25,
     // fontWeight: 'bold',
+    marginTop: 12,
     marginBottom: 20,
     fontFamily: "margarsa",
   },
