@@ -44,7 +44,7 @@ const client = new MongoClient(uri, {
   }
 });
 
-app.post('/createAccount', async (req, res) => {
+app.post('/createAccount', async (req: any, res: any) => {
   try {
     await client.connect();
     const collection = client.db("my_database_name").collection("users");

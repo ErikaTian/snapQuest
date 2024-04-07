@@ -1,15 +1,26 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app"
 import { getFirestore, collection } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBd3T40VLPXO4I1BsZHPqcL3YG1LAmq71k",
-  authDomain: "react-notes-1d4d3.firebaseapp.com",
-  projectId: "react-notes-1d4d3",
-  storageBucket: "react-notes-1d4d3.appspot.com",
-  messagingSenderId: "546912376505",
-  appId: "1:546912376505:web:b5afdd91c675e2c0eded68"
+  apiKey: "AIzaSyDYxvFdS7HTNwhxWf9BoEeMcBMXk28EGqU",
+  authDomain: "snapquest-a2392.firebaseapp.com",
+  databaseURL: "https://snapquest-a2392-default-rtdb.firebaseio.com",
+  projectId: "snapquest-a2392",
+  storageBucket: "snapquest-a2392.appspot.com",
+  messagingSenderId: "25502989679",
+  appId: "1:25502989679:web:3ab67adf05d3dd30b6bc9a",
+  measurementId: "G-EL82EQG1H6"
+};
+
+// Ensure Firebase is initialized
+if (!getApps().length) {
+  initializeApp(firebaseConfig);
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app)
-export const notesCollection = collection(db, "notes")
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const userCollection = collection(db, "users");
+
+export const firestore = getFirestore(app);
