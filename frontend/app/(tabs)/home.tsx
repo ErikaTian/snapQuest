@@ -21,6 +21,7 @@ const MyProgressBar: React.FC<MyProgressBarProps> = ({ progress }) => {
 const Homescreen = () => {
   // Replace 'USERNAME' with your state variable or prop
   const username = 'Taylor';
+  const completeQuest = false; 
   const questImage = require('../../assets/cherryblossom.png');
   // Current and longest streak as placeholders, replace with state/logic
   const currentStreak = 17;
@@ -38,6 +39,11 @@ const Homescreen = () => {
     const minutes = Math.floor(duration.asMinutes() % 60);
     return { hours, minutes };
   };
+
+  const completeText = () => {
+    return completeQuest ? 'Completed' : 'Not Completed';
+  };
+
 
   // State to hold the time remaining
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
@@ -88,7 +94,7 @@ const Homescreen = () => {
         <Image source={questImage} style={styles.questImage} />
         <Text style={styles.questTitle}>TODAY'S QUEST:</Text>
         <Text style={styles.questName}>"Step outside and snap a photo of the stunning cherry blossoms in bloom!"</Text>
-        <Text style={styles.questStatus}>Not completed yet!</Text>
+        <Text style={styles.questStatus}>{completeText()}!</Text>
         <Text style={styles.dueDateTime}>Upload your photo by {dueDateTime.format('MMMM Do, YYYY [at] h:mm A z')} to maintain your streak</Text>
         <View style={styles.timeRemainingContainer}>
           <Animated.View style={[styles.hourglassIcon, { transform: [{ rotate: spinAnimation }] }]}>
