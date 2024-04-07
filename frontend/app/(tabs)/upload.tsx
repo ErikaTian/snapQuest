@@ -56,7 +56,7 @@ const UploadScreen = () => {
             image: {
               content: base64ImageData,
             },
-            features: [{ type: 'LABEL_DETECTION', maxResults: 5 }],
+            features: [{ type: 'LABEL_DETECTION', maxResults: 10 }],
           },
         ],
       };
@@ -64,7 +64,7 @@ const UploadScreen = () => {
       const apiResponse = await axios.post(apiUrl, requestData);
 
       setLabels(apiResponse.data.responses[0].labelAnnotations);
-      const variableString = ['green', 'apple', 'pink']; 
+      const variableString = ['green', 'apple', 'square']; 
       const hasMatch = parseResponse(apiResponse.data.responses[0], variableString);
       if (hasMatch) {
         showAlert("Success!");
@@ -83,6 +83,7 @@ const UploadScreen = () => {
     }
   
     for (const annotation of response.labelAnnotations) {
+      console.log(annotation);
       if (variableString.includes(annotation.description)) {
         return true;
       }
