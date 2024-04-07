@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Image, ScrollView, Animated, Easing } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, Animated, Easing, Switch } from 'react-native';
 import moment from 'moment-timezone';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Fontisto } from '@expo/vector-icons';
+import { EventRegister } from 'react-native-event-listeners';
+
 
 // Define an interface for the props
 interface MyProgressBarProps {
@@ -83,9 +85,27 @@ const Homescreen = () => {
     outputRange: ['0deg', '360deg']
   });
 
+
+const [darkMode, setDarkMode] = useState(false)
   return (
+
     <ScrollView style={styles.container}>
       {/* Header Section */}
+
+      <View style = {styles.toggle}>
+      <Text style = {styles.text}>Dark Mode</Text>
+      <Switch
+          value = {darkMode}   
+          onValueChange ={(value) => {
+           
+          setDarkMode(value);
+          EventRegister.emit('ChangeTheme', value)
+     }}
+      />
+      </View>
+
+
+
       <View style={styles.header}>
         <Text style={styles.headerText}><Fontisto name="day-cloudy" size={24} color="black" /> Hello, {username}! <Fontisto name="day-cloudy" size={24} color="black" /> </Text>
       </View>
@@ -118,8 +138,11 @@ const Homescreen = () => {
 
       {/* Additional components will go here */}
     </ScrollView>
-  );
+  )
 };
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -253,6 +276,25 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#1A535C',
     borderRadius: 10,
+  },
+
+  toggle:{
+    flexDirection: 'row', // Arrange items horizontally
+    alignItems: 'center', // Align items vertically
+    justifyContent: 'space-between', // Space items evenly along the main axis
+    paddingHorizontal: 10, // Add padding horizontally
+    paddingVertical: 5, // Add padding vertically
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+   
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginRight: 0, // Add margin to separate Text and Switch
+    marginLeft: "65%", 
   },
 
 
