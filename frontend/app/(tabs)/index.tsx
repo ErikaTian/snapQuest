@@ -134,9 +134,10 @@ const styles = StyleSheet.create({
     borderBottomColor: '#D1D1D1', // Light gray border color
   },
   headerText: {
-    fontSize: 24,
+    fontSize: 45,
     fontFamily: 'cursive-font',
     // fontWeight: 'bold',
+    marginTop: 15,
     color: '#333333', // dark gray color for text
   },
   questCard: {
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
   },
 
   questTitle: {
-    fontSize: 16,
+    fontSize: 20,
     color: '#333333', // dark gray colour
     marginBottom: 8,
   },
