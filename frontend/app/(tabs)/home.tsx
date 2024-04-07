@@ -3,10 +3,31 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Animated, Easing } from 'r
 import moment from 'moment-timezone';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+// Define an interface for the props
+interface MyProgressBarProps {
+  progress: number; // Define the type of the 'progress' prop
+}
+
+// Use the interface for the component's props
+const MyProgressBar: React.FC<MyProgressBarProps> = ({ progress }) => {
+  const progressBarWidth = progress * 100; // Assuming progress is between 0 and 1
+  return (
+    <View style={styles.progressBarBackground}>
+      <View style={[styles.progressBarFill, { width: `${progressBarWidth}%` }]} />
+    </View>
+  );
+};
+
+
 const Homescreen = () => {
   // Replace 'USERNAME' with your state variable or prop
   const username = 'Chehak';
   const questImage = require('../../assets/cherryblossom.png');
+  // Current and longest streak as placeholders, replace with state/logic
+  const currentStreak = 17;
+  const longestStreak = 21;
+  const progress = currentStreak / longestStreak; // Progress bar value
+
     // Set due date and time
   const dueDateTime = moment.tz("2024-04-07T23:59:00", "America/Los_Angeles");
 
@@ -14,7 +35,9 @@ const Homescreen = () => {
   const calculateTimeRemaining = () => {
     const now = moment();
     const duration = moment.duration(dueDateTime.diff(now));
-    return duration.asHours(); // Returns the difference in hours
+    const hours = Math.floor(duration.asHours());
+    const minutes = Math.floor(duration.asMinutes() % 60);
+    return { hours, minutes };
   };
 
   // State to hold the time remaining
@@ -71,7 +94,18 @@ const Homescreen = () => {
           <Animated.View style={[styles.hourglassIcon, { transform: [{ rotate: spinAnimation}] }]}>
             <Icon name="hourglass" size={20} color="#666666" />
           </Animated.View>
-          <Text style={styles.timeRemaining}>Time Remaining: {timeRemaining}</Text>
+          <Text style={styles.timeRemaining}>Time Remaining:  {timeRemaining.hours} hours {timeRemaining.minutes} minutes</Text>
+        </View>
+      </View>
+
+       {/* Streak Section */}
+       <View style={styles.streakSection}>
+        <Text style={styles.streakTitle1}>WELLNESS CHALLENGE</Text>
+        <Text style={styles.streakTitle2}>You can do this!</Text>
+        <View style={styles.streakInfo}>
+          <Text style={styles.streakText}>Current Streak: {currentStreak} days</Text>
+          <Text style={styles.streakText}>Longest Streak: {longestStreak} days</Text>
+          <MyProgressBar progress={progress} />
         </View>
       </View>
       
@@ -126,6 +160,7 @@ const styles = StyleSheet.create({
     color: '#333333', // dark gray colour
     marginBottom: 8,
   },
+  
   questName: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -157,6 +192,56 @@ const styles = StyleSheet.create({
   hourglassIcon: {
     marginRight: 5,
   },
+  streakSection: {
+    marginTop: 20,
+    padding: 20,
+    marginHorizontal: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    alignItems: 'center',
+  },
+  streakTitle1: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#1A535C',
+    marginBottom: 10,
+  },
+
+  streakTitle2: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#1A535C',
+    marginBottom: 10,
+  },
+
+  streakInfo: {
+    alignSelf: 'stretch', // Stretch to the width of the parent
+    alignItems: 'center',
+  },
+  streakText: {
+    fontSize: 16,
+    color: '#333333',
+    marginBottom: 4,
+  },
+
+  progressBarBackground: {
+    width: '100%',
+    height: 20,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 10,
+    marginTop: 10, // Add margin to the top of the progress bar
+  },
+  progressBarFill: {
+    height: '100%',
+    backgroundColor: '#1A535C',
+    borderRadius: 10,
+  },
+
   // Styles for additional components will go here
 });
 
