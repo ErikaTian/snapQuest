@@ -17,7 +17,7 @@ const CreateAccountScreen = () => {
 
       <TextInput
         style={styles.input}
-        placeholder="Full Name"
+        placeholder="User Name"
         value={name}
         onChangeText={setName}
       />
@@ -44,16 +44,19 @@ const CreateAccountScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    marginTop: "50%",
+    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#fff',
+  
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 20,
+    fontFamily: 'mon-b'
   },
   input: {
     width: '100%',
