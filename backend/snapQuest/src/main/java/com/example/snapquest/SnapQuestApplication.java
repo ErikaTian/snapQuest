@@ -8,7 +8,7 @@ public class SnapQuestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SnapQuestApplication.class, args);
-		System.out.println("hello");
+		System.out.println("hello, it is me");
 	}
 
 }
