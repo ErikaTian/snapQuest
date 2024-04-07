@@ -12,7 +12,10 @@ export default {
   dark: "#1A1A1A",
   primary: "#FF385C", 
   grey: "#5E5D5E",
-  white: "#fff"
-  
+  white: "#fff",
+  lightGrey: '#FCF8FF', 
+  medium: '#9f9AA1', 
+  mediumDark: '424242',
+  green: '#437919',
 
 };
