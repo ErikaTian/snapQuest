@@ -1,5 +1,5 @@
-import React, { useEffect, useState }  from 'react';
-import { StyleSheet, View, Text, Image, SafeAreaView, Animated, Easing } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Text, Image, ScrollView, Animated, Easing } from 'react-native';
 import moment from 'moment-timezone';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -18,7 +18,6 @@ const MyProgressBar: React.FC<MyProgressBarProps> = ({ progress }) => {
   );
 };
 
-
 const Homescreen = () => {
   // Replace 'USERNAME' with your state variable or prop
   const username = 'Chehak';
@@ -28,7 +27,7 @@ const Homescreen = () => {
   const longestStreak = 21;
   const progress = currentStreak / longestStreak; // Progress bar value
 
-    // Set due date and time
+  // Set due date and time
   const dueDateTime = moment.tz("2024-04-07T23:59:00", "America/Los_Angeles");
 
   // Calculate time remaining
@@ -46,8 +45,8 @@ const Homescreen = () => {
   // Animated value for rotation
   const [spin] = useState(new Animated.Value(0));
 
-   // Function to start rotation animation
-   const startAnimation = () => {
+  // Function to start rotation animation
+  const startAnimation = () => {
     Animated.loop(
       Animated.timing(
         spin,
@@ -56,10 +55,11 @@ const Homescreen = () => {
           duration: 2000,
           easing: Easing.linear,
           useNativeDriver: true
-        } 
+        }
       )
     ).start();
   };
+
   // Update time remaining every minute
   useEffect(() => {
     startAnimation(); // Start the rotation animation
@@ -67,17 +67,17 @@ const Homescreen = () => {
       setTimeRemaining(calculateTimeRemaining());
     }, 60000); // Update every minute
 
-      return () => clearInterval(interval);
-    }, []);
-  
-    // Interpolate animated value for rotation
-    const spinAnimation = spin.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0deg', '360deg']
-    });
-  
+    return () => clearInterval(interval);
+  }, []);
+
+  // Interpolate animated value for rotation
+  const spinAnimation = spin.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+  });
+
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
         <Text style={styles.headerText}>Hello {username}!</Text>
@@ -91,15 +91,15 @@ const Homescreen = () => {
         <Text style={styles.questStatus}>Not completed yet!</Text>
         <Text style={styles.dueDateTime}>Upload your photo by {dueDateTime.format('MMMM Do, YYYY [at] h:mm A z')} to maintain your streak</Text>
         <View style={styles.timeRemainingContainer}>
-          <Animated.View style={[styles.hourglassIcon, { transform: [{ rotate: spinAnimation}] }]}>
+          <Animated.View style={[styles.hourglassIcon, { transform: [{ rotate: spinAnimation }] }]}>
             <Icon name="hourglass" size={20} color="#666666" />
           </Animated.View>
           <Text style={styles.timeRemaining}>Time Remaining:  {timeRemaining.hours} hours {timeRemaining.minutes} minutes</Text>
         </View>
       </View>
 
-       {/* Streak Section */}
-       <View style={styles.streakSection}>
+      {/* Streak Section */}
+      <View style={styles.streakSection}>
         <Text style={styles.streakTitle1}>WELLNESS CHALLENGE</Text>
         <Text style={styles.streakTitle2}>You can do this!</Text>
         <View style={styles.streakInfo}>
@@ -108,10 +108,9 @@ const Homescreen = () => {
           <MyProgressBar progress={progress} />
         </View>
       </View>
-      
-      {/* Additional components will go here */}
 
-    </SafeAreaView>
+      {/* Additional components will go here */}
+    </ScrollView>
   );
 };
 
@@ -123,11 +122,10 @@ const styles = StyleSheet.create({
   header: {
     marginTop: 20,
     padding: 16,
-    backgroundColor: '#FFFFFF', // white colour 
+    backgroundColor: '#FFFFFF', // white colour
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#D1D1D1', // Light gray border color
-
   },
   headerText: {
     fontSize: 24,
@@ -154,13 +152,13 @@ const styles = StyleSheet.create({
     borderRadius: 0, // Optional: if you want the image to be round
     marginBottom: 16, // Add some space between the image and the title text
   },
-  
+
   questTitle: {
     fontSize: 16,
     color: '#333333', // dark gray colour
     marginBottom: 8,
   },
-  
+
   questName: {
     fontSize: 20,
     fontWeight: 'bold',
