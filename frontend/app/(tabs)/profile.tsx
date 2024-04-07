@@ -11,9 +11,9 @@ const Page = () => {
   return (
     <NavigationContainer independent = {true}>
       <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Login" options={{ headerShown: false }} component={LoginScreen} />
+        <Stack.Screen name="CreateAccount" options={{ headerShown: false }} component={CreateAccountScreen} />
+        <Stack.Screen name="Profile" options={{ headerShown: false }}  component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

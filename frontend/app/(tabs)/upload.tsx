@@ -6,7 +6,9 @@ import * as FileSystem from 'expo-file-system';
 
 const UploadScreen = () => {
   const [image, setImage] = useState("");
+
   const [labels, setLabels] = useState([]);
+
 
 
   const pickImage = async () => {
@@ -18,6 +20,7 @@ const UploadScreen = () => {
     });
 
     if (!result.canceled) {
+
       analyzeImage(result.assets[0].uri);
       setImage(result.assets[0].uri);
       
@@ -99,10 +102,20 @@ const UploadScreen = () => {
       return true;
     } else {
       return false;
+
     }
   };
   
   
+
+  const showAlert = (message: string) => {
+    Alert.alert(
+      'Notification',
+      message,
+      [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+      { cancelable: false }
+    );
+  };
 
   return (
     <View style={styles.container}>
