@@ -21,7 +21,7 @@ const MyProgressBar: React.FC<MyProgressBarProps> = ({ progress }) => {
 };
 
 const ProfileScreen = () => {
-  const userName = 'John Doe'; // Replace 'John Doe' with the actual user's name
+  const userName = 'Taylor Doe'; // Replace 'John Doe' with the actual user's name
   const currentStreak = 17; // Replace with the actual current streak
   const longestStreak = 21; // Replace with the actual longest streak
   const progress = currentStreak / longestStreak; // Progress bar value
