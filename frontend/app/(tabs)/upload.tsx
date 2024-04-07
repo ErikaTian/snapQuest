@@ -51,7 +51,7 @@ const UploadScreen = () => {
             image: {
               content: base64ImageData,
             },
-            features: [{ type: 'LABEL_DETECTION', maxResults: 10 }],
+            features: [{ type: 'LABEL_DETECTION', maxResults: 20 }],
           },
         ],
       };
@@ -59,7 +59,7 @@ const UploadScreen = () => {
       const apiResponse = await axios.post(apiUrl, requestData);
 
       setLabels(apiResponse.data.responses[0].labelAnnotations);
-      const variableString = ['green', 'grass', 'aqua']; 
+      const variableString = ['green', 'grass', 'aqua', 'bottle', 'drink', 'cup', 'Plastic bottle', 'glass', 'circle', 'liquid', 'drinkware']; 
       const hasMatch = parseResponse(apiResponse.data.responses[0], variableString);
       if (hasMatch) {
         showAlert("Success!");
@@ -83,6 +83,7 @@ const UploadScreen = () => {
   
     for (const annotation of response.labelAnnotations) {
       console.log(annotation.description); 
+
       matchedDescriptions.push(annotation.description);
       if (variableString.includes(annotation.description.toLowerCase())) {
         foundMatch = true;
