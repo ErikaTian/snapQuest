@@ -2,17 +2,46 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 // import { useNavigation } from '@react-navigation/native';
 
+import firebase from '../firebaseConfig';
+import { auth } from '../firebaseConfig';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+
+
+
 const CreateAccountScreen = ({navigation}: any) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   // const navigation = useNavigation();
+  // const handleCreateAccount = () => {
+  //   // Add logic here to create the account (e.g., API call)
+  //   // Assuming successful account creation, navigate to ProfileScreen
+  //   navigation.navigate('Profile');
+  // };
+
   const handleCreateAccount = () => {
-    // Add logic here to create the account (e.g., API call)
-    // Assuming successful account creation, navigate to ProfileScreen
-    navigation.navigate('Profile');
-  };
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // After creating user, update their profile with the display name
+        updateProfile(userCredential.user, {
+          displayName: name
+        }).then(() => {
+          // Navigate to profile after successful account creation and profile update
+          navigation.navigate('Profile');
+        }).catch((error) => {
+          // Handle any errors from updating profile
+          console.error(error);
+        });
+      })
+      .catch((error) => {
+        // Handle any errors from account creation
+        console.error(error);
+      });
+  };  
+  
+
+  
 
   return (
     <View style={styles.container}>

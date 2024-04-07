@@ -1,19 +1,41 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
+import firebase from '../firebaseConfig';
+import { auth } from '../firebaseConfig';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+
+
+
 const LoginScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Perform authentication logic here
-    // For simplicity, assume successful login for now
-    navigation.navigate('Profile'); 
-  };
+  // const handleLogin = () => {
+  //   // Perform authentication logic here
+  //   // For simplicity, assume successful login for now
+  //   navigation.navigate('Profile');
+  // };
 
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in, navigate to profile or next screen
+        navigation.navigate('Profile');
+      })
+      .catch((error) => {
+        // Handle errors here, such as wrong password or no user
+        console.error(error);
+      });
+  };
+  
+
+
+  
   const handleCreateAccount = () => {
     navigation.navigate('CreateAccount'); 
   };
+
 return (
     <View style =  {styles.container}>
 
