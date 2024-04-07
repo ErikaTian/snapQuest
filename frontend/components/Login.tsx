@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Add authentication logic here (e.g., API call to verify credentials)
-    console.log('Login button pressed');
-  };
-  const handleCreateAccount = () => {
-    // Add authentication logic here (e.g., API call to verify credentials)
-    console.log('Login button pressed');
+    // Perform authentication logic here
+    // For simplicity, assume successful login for now
+    navigation.navigate('Profile'); 
   };
 
+  const handleCreateAccount = () => {
+    navigation.navigate('CreateAccount'); 
+  };
 return (
     <View style =  {styles.container}>
 

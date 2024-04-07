@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+// import { useNavigation } from '@react-navigation/native';
 
-const CreateAccountScreen = () => {
+const CreateAccountScreen = ({navigation}: any) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // const navigation = useNavigation();
   const handleCreateAccount = () => {
     // Add logic here to create the account (e.g., API call)
-    console.log('Create Account button pressed');
+    // Assuming successful account creation, navigate to ProfileScreen
+    navigation.navigate('Profile');
   };
 
   return (
