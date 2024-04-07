@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert, ImageBackground } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
 import * as FileSystem from 'expo-file-system';
@@ -109,7 +109,10 @@ const UploadScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    
+      
+      <View style={styles.container}>
+        <ImageBackground source={require("@/assets/images/motiv.jpg")} style={styles.logoStyle}>
       <View style={styles.uploadContainer}>
         <Text style={styles.title}>Daily Photo Upload</Text>
         <TouchableOpacity onPress={pickImage} style={styles.uploadButton}>
@@ -117,7 +120,9 @@ const UploadScreen = () => {
         </TouchableOpacity>
         {image && <Image source={{ uri: image }} style={styles.previewImage} />}
       </View>
+      </ImageBackground>
     </View>
+      
   );
 };
 
@@ -129,14 +134,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   uploadContainer: {
-    marginTop: 50,
+    marginTop: "55%",
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: "rgba(245, 255, 255, 0.7)",
+    marginRight: 20, 
+    marginLeft: 20, 
+
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 25,
+    // fontWeight: 'bold',
     marginBottom: 20,
+    fontFamily: "margarsa",
   },
   uploadButton: {
     backgroundColor: '#e7e7e7',
@@ -145,7 +155,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   uploadButtonText: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#4a4a4a',
   },
   previewImage: {
@@ -153,6 +163,11 @@ const styles = StyleSheet.create({
     height: 300,
     borderRadius: 10,
   },
+  logoStyle: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+  }
 });
 
 export default UploadScreen;
