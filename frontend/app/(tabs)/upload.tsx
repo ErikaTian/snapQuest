@@ -64,7 +64,7 @@ const UploadScreen = () => {
       const apiResponse = await axios.post(apiUrl, requestData);
 
       setLabels(apiResponse.data.responses[0].labelAnnotations);
-      const variableString = ['green', 'apple', 'square', 'grass', 'rectangle']; 
+      const variableString = ['green', 'grass', 'aqua']; 
       const hasMatch = parseResponse(apiResponse.data.responses[0], variableString);
       if (hasMatch) {
         showAlert("Success!");
@@ -87,16 +87,18 @@ const UploadScreen = () => {
     let foundMatch = false; // Flag to track if a match is found
   
     for (const annotation of response.labelAnnotations) {
+      console.log(annotation.description); 
       matchedDescriptions.push(annotation.description);
-      if (variableString.includes(annotation.description)) {
+      if (variableString.includes(annotation.description.toLowerCase())) {
         foundMatch = true;
+
       }
     }
   
     if (foundMatch) {
       return true;
     } else {
-      return matchedDescriptions;
+      return false;
     }
   };
   
