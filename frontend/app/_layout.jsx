@@ -26,7 +26,8 @@ export default function RootLayout() {
    'mon-sb': require('../assets/fonts/Montserrat-SemiBold.ttf'),
    'cute-font': require('../assets/fonts/ScholarlyAmbitionRegular.ttf'), 
    'mon-b': require('../assets/fonts/Montserrat-Bold.ttf'),
-   'cursive-font': require('../assets/fonts/CandyCanePersonal.ttf')
+   'cursive-font': require('../assets/fonts/CelosiaGolden.ttf'),
+   'margarsa': require('../assets/fonts/Maragsa.ttf')
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.

@@ -134,10 +134,10 @@ const styles = StyleSheet.create({
     borderBottomColor: '#D1D1D1', // Light gray border color
   },
   headerText: {
-    fontSize: 45,
+    fontSize: 50,
     fontFamily: 'cursive-font',
     // fontWeight: 'bold',
-    marginTop: 15,
+    // marginTop: 15,
     color: '#333333', // dark gray color for text
   },
   questCard: {
@@ -169,7 +169,8 @@ const styles = StyleSheet.create({
 
   questName: {
     fontSize: 20,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
+    fontFamily: "margarsa", 
     color: '#1A535C', // Darker shade of green for the quest name
   },
   questStatus: {
